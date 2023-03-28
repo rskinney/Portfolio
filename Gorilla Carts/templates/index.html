@@ -1,0 +1,34 @@
+<!-- CREATE CHILD TEMPLATE FOR "INDEX" PAGE (aka Home Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Index Page</title>
+    <div class="topnav">
+      <a class="active" href="/index">Home</a>
+      <a href="/customers">Customers</a>
+      <a href="/products">Products</a>
+      <a href="/materials">Materials</a>
+      <a href="/suppliers">Suppliers</a>
+      <a href="/orders">Orders</a>
+      <a href="/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<!-- Add text that will be static for the INDEX page-->
+
+<div class="header">
+    <h1 style="text-align:center;">Welcome to Gorilla Carts, Inc.</h1>
+</div>
+
+<div class="container">
+    <!-- Create an Ordered List - The OL tag is static and we only need one-->
+    <img src="{{url_for('static', filename='images/cart.png')}}" style="display: block; margin-left: auto; margin-right: auto; width: 35%;" />
+    <p style="text-align:center; color:black;">Our foldable Gorilla Carts are perfect for professionals with limited living space. Designed by our CEO, Alfonso, we believe our carts will be a perfect fit for people of any background.</p>
+</div>
+
+{% endblock %}
