@@ -1,10 +1,11 @@
 import sqlite3
 
 from app import app
+import os
 
 #this function accesses the database and acquires every event, putting them in a list of dictionaries
 def get_events():
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -15,7 +16,7 @@ def get_events():
 
 #this will take the user's input and add another event to the events table
 def add_event(name,date,host,description):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -25,7 +26,7 @@ def add_event(name,date,host,description):
 
 #very similar to the get_events function, this one just gets all the info from one event based on the event_id
 def get_event(event_id):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -36,7 +37,7 @@ def get_event(event_id):
 
 #this function will allow the user to edit every value in a particular event
 def edit_event(event_id,name,date,host,description):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -46,7 +47,7 @@ def edit_event(event_id,name,date,host,description):
 
 #this allows us to delete a particular event from the database
 def delete_event(event_id):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -54,10 +55,10 @@ def delete_event(event_id):
         cursorObj.execute("delete from events where id = ?", (event_id))
         con.commit()
     con.close()
-        
+
 #these next several are very similar to the events respective functions
 def get_attendees(event_id):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -67,7 +68,7 @@ def get_attendees(event_id):
     return attendees
 
 def get_attendee(attendee_id):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -77,7 +78,7 @@ def get_attendee(attendee_id):
     return attendee
 
 def add_attendee(event_id,name,email,comment):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -86,7 +87,7 @@ def add_attendee(event_id,name,email,comment):
     con.close()
 
 def edit_attendee(id,event_id,name,email,comment):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
@@ -95,7 +96,7 @@ def edit_attendee(id,event_id,name,email,comment):
     con.close()
 
 def del_attendee(attendee_id,event_id):
-    con = sqlite3.connect('Events.db')
+    con = sqlite3.connect(os.path.join(app.root_path,'Events.db'))
     with con:
         con.row_factory = sqlite3.Row
         cursorObj = con.cursor()
